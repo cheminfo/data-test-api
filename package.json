@@ -1,0 +1,44 @@
+{
+  "name": "data-test-api",
+  "version": "0.0.0",
+  "description": "API to expose test data in a convenient and consistent way",
+  "license": "MIT",
+  "type": "module",
+  "exports": "./lib/index.js",
+  "files": [
+    "lib",
+    "src"
+  ],
+  "scripts": {
+    "check-types": "tsc --noEmit",
+    "clean": "rimraf lib",
+    "eslint": "eslint .",
+    "eslint-fix": "eslint . --fix",
+    "prepack": "npm run tsc",
+    "prettier": "prettier --check src",
+    "prettier-write": "prettier --write src",
+    "test": "npm run test-only && npm run check-types && npm run eslint && npm run prettier",
+    "test-only": "vitest --run --coverage",
+    "tsc": "npm run clean && npm run tsc-build",
+    "tsc-build": "tsc --project tsconfig.build.json"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.14",
+    "@vitest/coverage-v8": "^3.2.4",
+    "@zakodium/tsconfig": "^1.0.2",
+    "eslint": "^9.31.0",
+    "eslint-config-cheminfo-typescript": "^19.0.0",
+    "prettier": "^3.6.2",
+    "rimraf": "^6.0.1",
+    "typescript": "^5.8.3",
+    "vitest": "^3.2.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cheminfo/data-test-api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cheminfo/data-test-api/issues"
+  },
+  "homepage": "https://github.com/cheminfo/data-test-api#readme"
+}
