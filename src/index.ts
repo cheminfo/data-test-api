@@ -3,6 +3,9 @@ import type { Dirent } from 'node:fs';
 import { DataTestApi } from './data_test_api.ts';
 import type { Path } from './types.ts';
 
+export type * from './types.ts';
+export * from './errors.ts';
+
 /**
  * Initialize the DataTestApi with the root directory.
  * @param root - The root directory for the data test API. It can be relative or absolute.
@@ -18,4 +21,3 @@ export default function init<RootPath extends Path<string>>(
 }
 
 export { DataTestApi } from './data_test_api.ts';
-export type * from './types.ts';

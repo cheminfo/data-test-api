@@ -4,11 +4,14 @@ import { join } from 'node:path';
 import { assert, describe, expect, it, test } from 'vitest';
 
 import type { AbsolutePath } from '../index.ts';
-import { DataTestApi } from '../index.ts';
+import {
+  DataTestApi,
+  FileNotExistsError,
+  FileNotFoundError,
+} from '../index.ts';
 
 test('should construct with data', async () => {
   const api = new DataTestApi('data');
-  await api.findFile('name');
 
   expect(api.root).toBe('data');
 });
@@ -126,16 +129,16 @@ describe('DataTestApi single file', () => {
     });
   });
 
-  it('should not throw if no file found', async () => {
-    const file = await api.findFile('not-found.txt');
-
-    expect(file).toBeUndefined();
+  it('should throw if no file found', async () => {
+    await expect(api.findFile('not-found.txt')).rejects.toThrow(
+      FileNotFoundError,
+    );
   });
 
   it('should not throw if file does not exists', async () => {
-    const file = await api.getFile('not-found.txt');
-
-    expect(file).toBeUndefined();
+    await expect(api.getFile('not-found.txt')).rejects.toThrow(
+      FileNotExistsError,
+    );
   });
 });
 
@@ -174,11 +177,12 @@ describe('DataTestApi data', () => {
     expect(buffer?.toString()).toBe('d\n');
   });
 
-  it('should not throw if no data found', async () => {
-    const bufferFound = await api.findData('not-found.txt');
-    const bufferGot = await api.getData('not-found.txt');
-
-    expect(bufferFound).toBeUndefined();
-    expect(bufferGot).toBeUndefined();
+  it('should throw if no data found', async () => {
+    await expect(api.findData('not-found.txt')).rejects.toThrow(
+      FileNotFoundError,
+    );
+    await expect(api.getData('not-found.txt')).rejects.toThrow(
+      FileNotExistsError,
+    );
   });
 });

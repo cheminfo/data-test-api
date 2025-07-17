@@ -4,6 +4,7 @@ import { basename, dirname, join } from 'node:path';
 
 import { direntToFileEntry } from './dirent_to_file_entry.js';
 import { direntsToFileEntries } from './dirents_to_file_entries.js';
+import { FileNotExistsError, FileNotFoundError } from './errors.js';
 import type { AbsolutePath, FileEntry, Path, RelativePath } from './types.js';
 
 export class DataTestApi<RootPath extends Path<string>> {
@@ -98,7 +99,7 @@ export class DataTestApi<RootPath extends Path<string>> {
    */
   async getFile<SubPath extends RelativePath<string>>(
     relativePath: SubPath extends AbsolutePath ? never : SubPath,
-  ): Promise<FileEntry<`${RootPath}/${SubPath}`> | undefined> {
+  ): Promise<FileEntry<`${RootPath}/${SubPath}`>> {
     const path = this.getPath(relativePath);
     const [dir, name] = [dirname(path), basename(path)];
     const files = await readdir(dir, {
@@ -107,7 +108,7 @@ export class DataTestApi<RootPath extends Path<string>> {
     });
 
     const file = files.find((f) => f.isFile() && f.name === name);
-    if (!file) return undefined;
+    if (!file) throw new FileNotExistsError(relativePath, this.root);
 
     return direntToFileEntry(
       file,
@@ -123,11 +124,11 @@ export class DataTestApi<RootPath extends Path<string>> {
    */
   async findFile<Name extends string>(
     name: Name extends `${string}/${string}` ? never : Name,
-  ): Promise<FileEntry<`${RootPath}/${string}`> | undefined> {
+  ): Promise<FileEntry<`${RootPath}/${string}`>> {
     const files = await this.#getRawFiles();
 
     const file = files.find((f) => f.isFile() && f.name === name);
-    if (!file) return undefined;
+    if (!file) throw new FileNotFoundError(name, this.root);
 
     return direntToFileEntry(file, this.#root);
   }
