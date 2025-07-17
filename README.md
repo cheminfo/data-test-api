@@ -10,6 +10,8 @@ npm i -D data-test-api
 
 ## Usage
 
+Api Reference: https://cheminfo.github.io/data-test-api/
+
 ### Package exposing files
 
 ```ts
