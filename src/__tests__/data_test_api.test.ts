@@ -97,8 +97,6 @@ describe('DataTestApi iterations', () => {
       path: join(DATA_ROOT, 'a.txt'),
       relativePath: 'a.txt',
     });
-
-    expect(entry.value.path).toMatch(/\/data\/a.txt$/);
   });
 });
 
@@ -113,6 +111,7 @@ describe('DataTestApi single file', () => {
       basename: 'd',
       extension: '.txt',
       relativePath: 'c/d.txt',
+      path: join(DATA_ROOT, 'c/d.txt'),
     });
   });
 
@@ -124,6 +123,7 @@ describe('DataTestApi single file', () => {
       basename: 'd',
       extension: '.txt',
       relativePath: 'c/d.txt',
+      path: join(DATA_ROOT, 'c/d.txt'),
     });
   });
 
