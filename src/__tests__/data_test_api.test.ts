@@ -135,7 +135,7 @@ describe('DataTestApi single file', () => {
     );
   });
 
-  it('should not throw if file does not exists', async () => {
+  it('should not throw if file does not exist', async () => {
     await expect(api.getFile('not-found.txt')).rejects.toThrow(
       FileNotExistsError,
     );
