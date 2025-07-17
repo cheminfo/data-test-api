@@ -80,45 +80,7 @@ const bufferByName = await api.findData('file.txt');
 
 ### FileEntry interface
 
-```ts
-/**
- * Represents a file entry in the DataTestApi.
- * Get basic info like, name, relative path, etc.
- * Get file stream or buffer.
- */
-export interface FileEntry<P extends Path<string> = Path<string>> {
-  /**
-   * The name of the file (with extension)
-   * @example 'file.txt'
-   */
-  name: string;
-  /**
-   * The name without extension
-   * @example 'file'
-   */
-  basename: string;
-  /**
-   * The file extension
-   * @example '.txt'
-   */
-  extension: string;
-  /**
-   * Relative from instance DataTestApi root
-   * @example 'subfolder/file.txt'
-   */
-  relativePath: RelativePath<string>;
-  /**
-   * The path to the file
-   * @example 'data/subfolder/file.txt'
-   * @example '/absolute/path/to/data/subfolder/file.txt'
-   */
-  path: P;
-  /** getter of the file stream */
-  stream: () => ReadStream;
-  /** getter of the buffer file */
-  buffer: () => Promise<Buffer>;
-}
-```
+https://cheminfo.github.io/data-test-api/interfaces/FileEntry.html
 
 ### Extends the API
 
