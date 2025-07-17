@@ -8,6 +8,6 @@ export class FileNotFoundError extends DataTestApiError {
 
 export class FileNotExistsError extends DataTestApiError {
   constructor(relativePath: string, root: string) {
-    super(`File does not exists: ${relativePath} into ${root}`);
+    super(`File does not exist: ${relativePath} into ${root}`);
   }
 }
