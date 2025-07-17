@@ -1,6 +1,6 @@
 {
   "name": "data-test-api",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "API to expose test data in a convenient and consistent way",
   "license": "MIT",
   "type": "module",
