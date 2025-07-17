@@ -14,7 +14,7 @@ export function* direntsToFileEntries<P extends Path<string>>(
   files: Dirent[],
   root: P,
   filter: (file: Dirent) => boolean,
-): Generator<FileEntry<`${P}/${string}`>> {
+): IteratorObject<FileEntry<`${P}/${string}`>, void> {
   for (const file of files) {
     if (!filter(file)) continue;
 
