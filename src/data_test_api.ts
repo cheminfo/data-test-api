@@ -93,7 +93,7 @@ export class DataTestApi<RootPath extends Path<string>> {
   /**
    * Get a FileEntry object for a specific file path relative to the root directory.
    * This method does not use the filter, so it will return the file if it exists, even if it does not match the filter.
-   * @param relativePath - The relative path to the file.
+   * @param relativePath - The relative path of the file (relative to the root directory).
    * @returns - A promise fulfilled with a FileEntry object if the file exists, or undefined if it does not.
    */
   async getFile<SubPath extends RelativePath<string>>(
@@ -135,7 +135,7 @@ export class DataTestApi<RootPath extends Path<string>> {
   /**
    * Get the data (as a Buffer) of a file for a specific path relative to the root directory.
    * This method does not use the filter, so it will return the data if the file exists, even if it does not match the filter.
-   * @param relativePath - The relative path to the file.
+   * @param relativePath - The relative path of the file (relative to the root directory).
    * @returns - A promise fulfilled with the file data as a Buffer if the file exists, or undefined if it does not.
    */
   async getData<SubPath extends RelativePath<string>>(

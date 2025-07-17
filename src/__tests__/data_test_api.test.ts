@@ -1,7 +1,7 @@
 import { stat } from 'node:fs/promises';
 import { join } from 'node:path';
 
-import { describe, expect, it, test } from 'vitest';
+import { assert, describe, expect, it, test } from 'vitest';
 
 import type { AbsolutePath } from '../index.ts';
 import { DataTestApi } from '../index.ts';
@@ -85,8 +85,7 @@ describe('DataTestApi iterations', () => {
     const entries = await api.filesValues();
     const entry = entries.next();
 
-    // eslint-disable-next-line vitest/no-conditional-in-test
-    if (entry.done) throw new Error('No entry found');
+    assert(!entry.done, 'No entry found');
 
     const file = entry.value;
 
