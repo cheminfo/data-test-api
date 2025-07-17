@@ -6,14 +6,9 @@ test('init alias works', async () => {
   const api = init('data', (dirent) => dirent.isDirectory());
 
   expect(api.root).toBe('data');
-  await expect(api.files()).resolves.toMatchObject([
-    {
-      name: 'c',
-      relativePath: 'c',
-    },
-    {
-      name: 'e.txt',
-      relativePath: 'e.txt',
-    },
-  ]);
+
+  const files = await api.files();
+  const items = files.map((file) => file.relativePath);
+
+  expect(items).toStrictEqual(['c', 'e.txt']);
 });
