@@ -12,16 +12,37 @@ export type ExtractPath<P extends Path<string>> = P extends AbsolutePath
     ? S
     : never;
 
+/**
+ * Represents a file entry in the DataTestApi.
+ * Get basic info like, name, relative path, etc.
+ * Get file stream or buffer.
+ */
 export interface FileEntry<P extends Path<string> = Path<string>> {
-  /** the name of the file (with extension) */
+  /**
+   * The name of the file (with extension)
+   * @example 'file.txt'
+   */
   name: string;
-  /** the name without extension */
+  /**
+   * The name without extension
+   * @example 'file'
+   */
   basename: string;
-  /** the file extension */
+  /**
+   * The file extension
+   * @example '.txt'
+   */
   extension: string;
-  /** Relative from instance DataTestApi root */
+  /**
+   * Relative from instance DataTestApi root
+   * @example 'subfolder/file.txt'
+   */
   relativePath: RelativePath<string>;
-  /** the absolute path to the file */
+  /**
+   * The path to the file
+   * @example 'data/subfolder/file.txt'
+   * @example '/absolute/path/to/data/subfolder/file.txt'
+   */
   path: P;
   /** getter of the file stream */
   stream: () => ReadStream;
