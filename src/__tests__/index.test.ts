@@ -1,9 +1,19 @@
 import { expect, test } from 'vitest';
 
-import { DataTestApi } from '../index.ts';
+import init from '../index.ts';
 
-test('should construct with root', () => {
-  const api = new DataTestApi('root');
+test('init alias works', async () => {
+  const api = init('data', (dirent) => dirent.isDirectory());
 
-  expect(api.root).toBe('root');
+  expect(api.root).toBe('data');
+  await expect(api.files()).resolves.toMatchObject([
+    {
+      name: 'c',
+      relativePath: 'c',
+    },
+    {
+      name: 'e.txt',
+      relativePath: 'e.txt',
+    },
+  ]);
 });
