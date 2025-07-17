@@ -19,10 +19,11 @@ Api Reference: https://cheminfo.github.io/data-test-api/
 
 import { join } from 'node:path';
 
+import type { AbsolutePath } from 'data-test-api';
 import init from 'data-test-api';
 
 const zipFilesApi = init(
-  join(import.meta.dirname, '../data/zipped'),
+  join(import.meta.dirname, '../data/zipped') as AbsolutePath,
   (dirent) => dirent.isFile() && dirent.name.endsWith('.zip'),
 );
 
@@ -36,9 +37,10 @@ export { zipFilesApi, flatFilesApi };
 ```ts
 import { join } from 'node:path';
 
+import type { AbsolutePath } from 'data-test-api';
 import init from 'data-test-api';
 
-const api = init(join(import.meta.dirname, '../data'));
+const api = init(join(import.meta.dirname, '../data') as AbsolutePath);
 
 const root = api.root;
 const filePath = api.getPath('relative/path/to/file.txt');
@@ -136,5 +138,18 @@ export class JdxDataTestApi extends DataTestApi {
   }
 
   // you can override methods or add new ones
+}
+```
+
+### Working relatively with working directory
+
+```js
+// ls-recursive.js
+
+import init from 'data-test-api';
+const api = init('./', () => true);
+
+for await (const file of api.filesAsyncValues()) {
+  console.log(file.path); // path is relative to cwd
 }
 ```
