@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/cheminfo/data-test-api/compare/v1.0.1...v1.0.2) (2025-08-13)
+
+
+### Bug Fixes
+
+* exports ([#5](https://github.com/cheminfo/data-test-api/issues/5)) ([9418c5b](https://github.com/cheminfo/data-test-api/commit/9418c5bb22d4bafa48ff830cd7aa05c69f49a8ba))
+
 ## [1.0.1](https://github.com/cheminfo/data-test-api/compare/v1.0.0...v1.0.1) (2025-07-17)
 
 
