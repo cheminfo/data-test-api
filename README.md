@@ -5,7 +5,7 @@ API to expose test data in a convenient and consistent way
 ## Installation
 
 ```bash
-npm i -D data-test-api
+npm install -D data-test-api
 ```
 
 ## Usage

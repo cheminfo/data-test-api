@@ -7,7 +7,7 @@ export type * from './types.ts';
 export * from './errors.ts';
 
 /**
- * Initialize the DataTestApi with the root directory.
+ * Initialise the DataTestApi with the root directory.
  * @param root - The root directory for the data test API. It can be relative or absolute.
  * @param fileFilter - An optional filter function to determine which files to include.
  *                     Defaults to filtering only files.
